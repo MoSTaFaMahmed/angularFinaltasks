@@ -1,0 +1,16 @@
+<div class="alert alert-primary p-5" role="alert" *ngIf="flag">
+  {{messeg}}
+</div>
+<h1>{{ storeObj.name }}</h1>
+
+<img [src]="storeObj.logo" class="img-fluid" />
+
+<h3>
+  We offer an explicit discount of
+  {{ Discount.offer1 }} Enum
+</h3>
+
+
+<ul>
+  <li *ngFor="let item of storeObj.branches">{{ item }}</li>
+</ul>

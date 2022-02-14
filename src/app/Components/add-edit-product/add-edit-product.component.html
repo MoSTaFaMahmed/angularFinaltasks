@@ -1,0 +1,52 @@
+<a name="" id="" class="btn btn-primary mb-1" [routerLink]="['/product-page','edit',prod.id]" role="button">Edit</a>
+<form #myForm="ngForm"  (ngSubmit)="onSubmit()" >
+  <!--(ngSubmit)="onClicsubmit(myForm.value)"" -->
+  <div class="form-floating mb-3">
+    <input type="text" #nameValidation="ngModel"  [(ngModel)]="prod.name" name="name" class="form-control" id="name" [disabled]="mode=='view'" required pattern="[A-Za-z]{4,}">
+    <label for="name">Name</label>
+    <div class="alert alert-warning" [hidden]="nameValidation.valid || nameValidation.untouched">
+      <small *ngIf="nameValidation.errors?.['required']">Required Field!</small>
+      <small *ngIf="nameValidation.errors?.['pattern']"> Name must be 4 letters at least</small>
+    </div>
+      </div>
+  <!-- [(ngModel)]="selectedCat" -->
+  <div class="form-floating mb-3">
+    <input type="number" #priceValidation="ngModel" min="1"  [(ngModel)]="prod.price" name="price" class="form-control" id="price" [disabled]="mode=='view'" required pattern="[0-9]{1,}">
+    <label for="price">Price</label>
+    <div class="alert alert-warning" [hidden]="priceValidation.valid || priceValidation.untouched">
+      <small *ngIf="priceValidation.errors?.['required']">Required Field!</small>
+      <small *ngIf="priceValidation.errors?.['pattern']"> Must be number</small>
+      <small *ngIf="QuantityValidation.errors?.['min']">Positive Must be number</small>
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="number" #QuantityValidation="ngModel" min="1" [(ngModel)]="prod.quantity" name="quantity" class="form-control" id="quantity" [disabled]="mode=='view'" required pattern="[0-9]{1,}">
+    <label for="quantity">Quantity</label>
+    <div class="alert alert-warning" [hidden]="QuantityValidation.valid || QuantityValidation.untouched">
+      <small *ngIf="QuantityValidation.errors?.['required']">Required Field!</small>
+      <small *ngIf="QuantityValidation.errors?.['pattern']"> Must be number</small>
+      <small *ngIf="QuantityValidation.errors?.['min']">Positive Must be number</small>
+    </div>
+  </div>
+  <!-- <div class="form-floating mb-3">
+    <input type="text"  [(ngModel)]="prod.img" name="img" class="form-control" id="img" [disabled]="mode=='view'">
+    <label for="img">Img</label>
+  </div> -->
+
+  <div class="mb-3">
+    <label for="pImg" class="form-label">Image</label>
+    <input type="file" name="img" class="form-control" id="img"  [(ngModel)]="prod.img"  [disabled]="mode=='view'">
+  </div>
+  <!-- <div class="form-floating mb-3">
+    <input type="text"  [(ngModel)]="prod.categoryID" name="categoryID" class="form-control" id="Catogrie" [disabled]="mode=='view'">
+    <label for="Catogrie">imgCatogrie</label>
+  </div> -->
+  <div class="form-floating mb-3">
+    <select class="form-control"  [disabled]="mode=='view'">
+      <option value="0" selected >All</option>
+      <option *ngFor="let item of catogeryList" [value]="item.id" [(ngModel)]="item.id" name="categoryID">{{item.name}}</option>
+    </select>
+    </div>
+  <button class="btn btn-primary" [disabled]="myForm.invalid" *ngIf="mode!='view'">{{mode=='add'?'Add':'Save'}}</button>
+</form>
+

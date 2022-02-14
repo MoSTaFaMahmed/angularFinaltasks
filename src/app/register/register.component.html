@@ -1,0 +1,71 @@
+<form [formGroup]="form" (ngSubmit)="register()">
+  <div class="mb-3">
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input type="test" class="form-control" formControlName="fullName" name="fullName" id="name"/>
+      <div class="alert alert-warning" [hidden]="fullName?.valid || fullName?.untouched">
+        <small *ngIf="fullName?.errors?.['required']">Required Field!</small>
+        <small *ngIf="fullName?.errors?.['pattern']"> Name must be 5 letters at least</small>
+      </div>
+    </div>
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" aria-describedby="emailHelp" />
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    <div class="alert alert-warning" [hidden]="email?.valid || email?.untouched">
+      <small *ngIf="email?.errors?.['required']">Required Field!</small>
+      <small *ngIf="email?.errors?.['EmailNotValid']">Not Valid </small>
+    </div>
+  </div>
+  <div formArrayName="phones">
+    <div class="mb-3" *ngFor="let phoneCtrl of controls; let i = index">
+      <label for="phone" class="form-label">phone</label>
+      <input type="text" class="form-control" id="phone" [formControlName]="i" />
+      <button class="btn btn-danger btn-sm" (click)="deletePhone(i)" type="button" *ngIf="controls.length > 1">x</button>
+
+    </div>
+  </div>
+  <button class="btn btn-primary btn-sm" (click)="addMore()" type="button">Add More</button>
+  <div *ngIf="form.errors?.['includename'] && (form.touched || form.dirty)" class="cross-validation-error-message alert alert-danger">password must not include name.</div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" />
+  </div>
+  <div *ngIf="form.errors?.['dontmatch'] && (form.touched || form.dirty)" class="cross-validation-error-message alert alert-danger">passwords dont match</div>
+
+  <div class="mb-3">
+    <label for="confirmPass" class="form-label">Confirm Password</label>
+    <input type="password" class="form-control" id="confirmPass" formControlName="validatePasswoed" />
+  </div>
+  <div formGroupName="address">
+    <div class="mb-3">
+      <label for="city" class="form-label">Ciry</label>
+      <input type="text" class="form-control" id="city" formControlName="city" />
+    </div>
+    <div class="mb-3">
+      <label for="postalCode" class="form-label">Post Code</label>
+      <input type="text" class="form-control" id="postalCode" formControlName="postalCode" />
+    </div>
+    <div class="mb-3">
+      <label for="street" class="form-label">State</label>
+      <input type="text" class="form-control" id="street" formControlName="street" />
+    </div>
+  </div>
+
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    <input type="radio" class="btn-check" formControlName="referral" name="referral" id="btnradio1" autocomplete="off" value="SocialMedia" (change)="updateReferralValidators()">
+    <label class="btn btn-outline-primary" for="btnradio1">Delivery</label>
+
+    <input type="radio" class="btn-check" formControlName="referral" name="referral" id="btnradio2" autocomplete="off" value="Friend" (change)="updateReferralValidators()">
+    <label class="btn btn-outline-primary" for="btnradio2">Any Day</label>
+
+    <input type="radio" class="btn-check" formControlName="referral" name="referral" id="btnradio3" autocomplete="off" value="other" (change)="updateReferralValidators()">
+    <label class="btn btn-outline-primary" for="btnradio3">Specify Day</label>
+  </div>
+  <div class="mb-3 ms-3" *ngIf="referral?.value=='other'">
+    <label for="rOther" class="form-label">Specify Day</label>
+      <input type="text" formControlName="referralOther" class="form-control" id="rOther" name="refOhter">
+  </div>
+
+  <button type="submit" class="btn btn-primary d-block m-3" [disabled]="form.invalid">Submit</button>
+</form>
+<!-- <button (click)="register()">register</button> -->

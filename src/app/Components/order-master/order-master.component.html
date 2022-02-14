@@ -1,0 +1,31 @@
+<!-- (change)="filterCat(selected.value)" -->
+<select  class="form-control" name="cat" id="prdCat" value="0" [(ngModel)]="selectedCat" >
+  <option value="0" selected >All</option>
+  <option *ngFor="let cat of categoryList"[value]="cat.id">{{cat.name}}</option>
+</select>
+<app-products [inputCatID]="selectedCat" (PushShoppingCartItems)="addToCart($event)"
+[RemovedItems]="AddedProductCart"
+></app-products>
+<table class="table table-hover mt-5">
+  <tr>
+
+  <td>Name</td>
+  <td>Price</td>
+  <td>Quantiy</td>
+  <td>Total</td>
+</tr>
+
+  <tr *ngFor="let item of AddedProductCart ">
+
+<td>{{item.productName}}</td>
+<td>{{item.productPrice}}</td>
+<td><input #count type="number" min="1" max={{item.productQuntity}} value={{item.productCount}} ></td>
+<td><button type="button" class="btn btn-danger bg-danger btn-sm" (click)="RomveItme(item.ID)">Delete</button></td>
+
+<td></td>
+
+  </tr>
+
+</table>
+<h1>Total Price{{totalPrice}}</h1>
+

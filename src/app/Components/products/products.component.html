@@ -1,0 +1,163 @@
+<!-- <p>products</p>
+
+<div *ngIf="show">
+  <h1>{{ storeObj.name }}</h1>
+
+  <img [src]="storeObj.logo" class="img-fluid" />
+
+  <h3>
+    We offer an explicit discount of
+    {{ Discount.offer1 }} Enum
+  </h3>
+
+
+  <ul>
+    <li *ngFor="let item of storeObj.branches">{{ item }}</li>
+  </ul>
+
+  <table>
+
+  </table>
+  <select class="form-control my-5">
+
+    <option
+      *ngFor="let order of ProductList; let i = index"
+      [value]="ProductList[i].id"
+    >
+      {{ ProductList[i].name }}
+    </option>
+  </select> -->
+
+  <!-- <select class="form-control my-5">
+  <option *ngFor="let order of ProductList">
+    {{order.cateogry.name}}
+  </option>
+</select> -->
+
+
+<!--
+<table class="table">
+  <th> ID:</th>
+  <th> Name:</th>
+  <th> quantity:</th>
+  <th>Price:</th>
+  <th>Image:</th>
+  <th>Catodery</th>
+  <td>Buy</td>
+
+<tr  *ngFor="let p of ProductListFilter" [class.d-none]="p.quantity==0"
+[ngStyle]="{'background-color':(p.quantity==1)?'gray':''}"
+>
+  <td>{{p.id}}</td>
+  <td>{{p.name}}</td>
+  <td> {{p.quantity}}</td>
+  <td> {{p.price}}</td>
+  <td> <img [src]="p.img" style="width: 60px;"/></td>
+
+<td><button type="button" class="btn btn-dark bg-dark" (click)="buy(p.id)">Buy</button></td>
+</tr>
+
+</table> -->
+
+<!-- <select #selected class="form-control" name="cat" id="prdCat"  (change)="filterCat(selected.value)" >
+  <option value="All" selected disabled>All</option>
+  <option *ngFor="let cat of CategoryList"[value]="cat.id">{{cat.name}}</option>
+</select> -->
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <a name="" id="" class="btn btn-primary mb-1" [routerLink]="['/product-page','add','new']" role="button">Add</a>
+<div Box="black"  class="col-lg-3 col-md-4 col-sm-12 sm-m-auto  text-center Cart"  *ngFor="let p of ProductListFilter" [class.d-none]="p.quantity==0"
+[ngStyle]="{'background-color':(p.quantity==1)?'gray':''}">
+
+<img
+class="img-fluid mt-3"
+[src]="p.img"
+/>
+
+<p class="fs-6"> <span class="text-danger">Name:</span>{{p.name}}</p>
+<p class="fs-6"><span class="text-danger">Quantity:</span>{{p.quantity}}</p>
+<p class="fs-6"><span class="text-danger">Price:</span>{{p.price|currency}}</p>
+<!-- <p class="fs-6"><span class="text-danger">Total Price:</span>{{p.price|currency}}</p> -->
+<!-- <p class="fs-6">Date:{{prodDate|date:'short'}}</p> -->
+<p><input type="number" #count min="1" max={{p.quantity}}>Count</p>
+<!-- <p><button type="button" class="btn btn-dark bg-dark" (click)="buy(p.id)">Buy</button></p> -->
+
+<a name="" id="" class="btn btn-primary mb-1" [routerLink]="['/Order',p.id]" role="button">Details</a>
+<p><button type="button" class="btn btn-dark bg-dark" (click)="AddToCart(p.id,p.quantity,p.price,p.name,count.value)">Add TO Card</button></p>
+<p><button class="btn btn-danger" (click)="deleteProduct(p.id)">Delete</button></p>
+<a name="" id="" class="btn btn-primary mb-1" [routerLink]="['/product-page','edit',p.id]" role="button">Edit</a>
+
+</div>
+
+  </div>
+</div>
+<!--
+<p>{{'29909011509345'|egyptianNational}}</p>
+<p>{{'0000000000000000'|creditCard}}</p> -->
+
+  <!-- <select
+    name="catigories"
+    class="form-control my-5"
+    [(ngModel)]="selectedOption"
+    (change)="displayProducts()"
+  >
+    <option [value]="p.cateogry.name" *ngFor="let p of ProductList">
+      {{ p.cateogry.name }}
+    </option>
+  </select> -->
+
+<!--
+  <table class="table">
+    <tbody>
+    <tr>
+      <th> ID:</th>
+      <th> Name:</th>
+      <th> quantity:</th>
+      <th>Price:</th>
+      <th>Image:</th>
+    </tr>
+
+
+     <tr  *ngFor="let p of ProductList">
+      <td *ngIf="p.cateogry.name == printedOption">
+
+        {{
+          p.id
+        }}
+      </td>
+      <td *ngIf="p.cateogry.name == printedOption">
+
+        {{
+          p.name
+        }}
+      </td>
+
+      <td *ngIf="p.cateogry.name == printedOption">
+
+        {{
+          p.quantity
+        }}
+      </td>
+      <td *ngIf="p.cateogry.name == printedOption">
+
+        {{
+          p.price
+        }}
+      </td>
+      <td *ngIf="p.cateogry.name == printedOption">
+        <img [src]="p.img" style="width: 60px;"/>
+        </td>
+     </tr>
+
+    </tbody>
+  </table> -->
+  <!-- <input type="text" [(ngModel)]="user_Name" class="form-control my-5" />
+</div>
+<div *ngIf="!show">
+  Thanks for purchasing from our Store
+  <span class="text-danger">{{ user_Name }}</span>
+</div>
+<button type="button" class="btn btn-primary btn-sm m-5" (click)="toggle()">
+  Show
+</button> -->

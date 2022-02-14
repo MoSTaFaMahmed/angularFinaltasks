@@ -1,0 +1,21 @@
+
+<div class="card mb-3" style="max-width:300px;">
+  <div class="row g-0">
+
+      <img [src]="prod?.img" class="card-img-top"  style="width: 18rem;">
+
+
+      <div class="card-body">
+        <h5 class="card-title">{{prod?.name}}</h5>
+        <p class="card-text">{{prod?.price}}</p>
+        <p class="card-text">{{prod?.quantity}}</p>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-primary" [disabled]="prodId==productsId[0]" [ngClass]="{'disabled':first==true}" (click)="prevProd(prod.id)">Prev</button>
+          <button type="button" class="btn btn-primary"  (click)="backToProd()">Back</button>
+          <button type="button" class="btn btn-primary" [disabled]="prodId==productsId[productsId.length-1]"  [ngClass]="{'disabled':last==true}" (click)="nextProd(prod.id)">Next</button>
+        </div>
+
+    </div>
+  </div>
+</div>

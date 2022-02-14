@@ -1,0 +1,10 @@
+
+.Cart{
+  margin:15px;
+  border-radius: 20px;
+  background-color: #fff;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  // box-shadow: 30px 30px 25px 20px rgba(0, 0, 0, 0.15);
+  max-width:400px;
+  position: relative;
+}
